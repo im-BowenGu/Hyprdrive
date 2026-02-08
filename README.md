@@ -2,18 +2,25 @@
 
 This repository contains the configuration files and scripts to create an opinionated Arch Linux distribution, "Hyprdrive OS", based on the user's current system setup.
 
-## System Personality
+## System Personality & Purpose
 
-This configuration is based on the "MyLinuxForWork" (ML4W) dotfiles and is tailored for a specific aesthetic and workflow.
+"Hyprdrive OS" is designed as a high-performance, aesthetically pleasing, and highly customized Arch Linux environment. It caters to users who demand bleeding-edge performance, a sleek visual experience, and a robust platform for development and daily use.
 
-*   **Window Manager**: [Hyprland](https://hyprland.org/), a dynamic tiling Wayland compositor.
-*   **Color Scheme**: A dark theme with orange as a primary color, following Material Design color roles.
-*   **Window Decorations**:
-    *   Rounded corners for a modern, soft look.
-    *   Blur enabled for transparent windows.
-    *   Subtle purplish shadows for a unique contrast.
-*   **Terminal**: [Kitty](https://sw.kovidgoyal.net/kitty/), a fast, feature-rich, GPU-based terminal emulator.
-*   **Status Bar**: [Waybar](https://github.com/Alexays/Waybar), a highly customizable Wayland bar for Sway and wlroots based compositors.
+**Core Philosophy:** Performance, Customization, and a Modern Workflow.
+
+**Key Characteristics:**
+
+*   **Foundation**: Arch Linux x86_64, leveraging the performance-tuned **CachyOS Kernel** (currently 6.18.8-3-cachyos) for optimal hardware utilization.
+*   **Hardware Focus**: Optimized for modern Intel CPUs (e.g., Intel Ultra 9 275HX) and high-end NVIDIA/Intel integrated graphics, making it suitable for demanding tasks.
+*   **Window Manager**: **Hyprland**, a dynamic tiling Wayland compositor, providing a smooth, GPU-accelerated desktop experience with extensive customization.
+*   **Aesthetics**:
+    *   **Color Scheme**: A sophisticated dark theme with a prominent orange primary color, adhering to Material Design color roles for a consistent and modern look.
+    *   **Window Decorations**: Features rounded corners for a soft, contemporary feel, subtle blur effects for transparent elements, and unique purplish shadows that add depth and character.
+    *   **Icons**: **Colloid Icon Theme**, enhancing the visual consistency.
+*   **Terminal**: **Kitty**, a fast, GPU-based terminal emulator, crucial for developers and power users.
+*   **Status Bar**: **Waybar**, a highly customizable Wayland bar, offering rich system information and quick access to controls.
+*   **Package Management**: A hybrid approach leveraging `pacman` for native Arch packages, `rua` for AUR packages, and `flatpak` for sandboxed applications, providing flexibility and access to a vast software ecosystem.
+*   **Origin**: Based on the well-regarded "MyLinuxForWork" (ML4W) dotfiles, ensuring a thoughtfully designed and coherent system from the ground up.
 
 ## Project Structure
 
