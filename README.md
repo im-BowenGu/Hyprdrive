@@ -2,6 +2,19 @@
 
 This repository contains the configuration files and scripts to create an opinionated Arch Linux distribution, "Hyprdrive OS", based on the user's current system setup.
 
+## System Personality
+
+This configuration is based on the "MyLinuxForWork" (ML4W) dotfiles and is tailored for a specific aesthetic and workflow.
+
+*   **Window Manager**: [Hyprland](https://hyprland.org/), a dynamic tiling Wayland compositor.
+*   **Color Scheme**: A dark theme with orange as a primary color, following Material Design color roles.
+*   **Window Decorations**:
+    *   Rounded corners for a modern, soft look.
+    *   Blur enabled for transparent windows.
+    *   Subtle purplish shadows for a unique contrast.
+*   **Terminal**: [Kitty](https://sw.kovidgoyal.net/kitty/), a fast, feature-rich, GPU-based terminal emulator.
+*   **Status Bar**: [Waybar](https://github.com/Alexays/Waybar), a highly customizable Wayland bar for Sway and wlroots based compositors.
+
 ## Project Structure
 
 *   `extract-dots.sh`: A script to extract essential configuration files (dotfiles) and package lists from the current system.
