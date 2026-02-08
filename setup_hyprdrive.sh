@@ -80,6 +80,51 @@ sudo mv "$TEMP_PACMAN_CONF" "$PACMAN_CONF"
 echo " CachyOS repositories configured. Updating pacman databases..."
 sudo pacman -Syy # Refresh databases after repo changes
 
+# --- Install Nix Package Manager ---
+echo " Installing Nix Package Manager..."
+if ! command -v nix &> /dev/null; then
+    # Install multi-user Nix
+    curl -L https://nixos.org/nix/install | sh
+
+    # Source Nix profile for the current session
+    if [ -f '/etc/profile.d/nix.sh' ]; then
+        . '/etc/profile.d/nix.sh'
+    fi
+    if [ -f '~/.nix-profile/etc/profile.d/nix.sh' ]; then
+        . '~/.nix-profile/etc/profile.d/nix.sh'
+    fi
+    echo " Nix installation attempt completed."
+else
+    echo " Nix is already installed."
+    # Ensure Nix profile is sourced if already installed
+    if [ -f '/etc/profile.d/nix.sh' ]; then
+        . '/etc/profile.d/nix.sh'
+    fi
+    if [ -f '~/.nix-profile/etc/profile.d/nix.sh' ]; then
+        . '~/.nix-profile/etc/profile.d/nix.sh'
+    fi
+fi
+
+# --- Install Nixman Wrapper ---
+echo " Installing Nixman wrapper..."
+if ! command -v nixman &> /dev/null; then
+    git clone https://github.com/im-BowenGu/Nixman.git /tmp/Nixman
+    if [ $? -eq 0 ]; then
+        sudo cp /tmp/Nixman/nixman.sh /usr/local/bin/nixman
+        sudo chmod +x /usr/local/bin/nixman
+        if [ $? -ne 0 ]; then
+            echo " Failed to install Nixman. Please check the logs."
+        else
+            echo " Nixman installed."
+        fi
+        sudo rm -rf /tmp/Nixman
+    else
+        echo " Failed to clone Nixman repository."
+    fi
+else
+    echo " Nixman is already installed."
+fi
+
 # --- 1. Install Native Arch Packages (including base-devel and CachyOS kernel) ---
 echo " Installing native Arch packages, base-devel, and CachyOS kernel..."
 

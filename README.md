@@ -19,7 +19,7 @@ This repository contains the configuration files and scripts to create an opinio
     *   **Icons**: **Colloid Icon Theme**, enhancing the visual consistency.
 *   **Terminal**: **Kitty**, a fast, GPU-based terminal emulator, crucial for developers and power users.
 *   **Status Bar**: **Waybar**, a highly customizable Wayland bar, offering rich system information and quick access to controls.
-*   **Package Management**: A multi-faceted approach leveraging `pacman` for native Arch packages, `rua` for AUR packages, `flatpak` for sandboxed applications, and **Nix** for declarative and reproducible package management (both user-specific and system-wide), providing unparalleled flexibility and access to a vast software ecosystem.
+*   **Package Management**: A multi-faceted approach leveraging `pacman` for native Arch packages, `rua` for AUR packages, `flatpak` for sandboxed applications, and **Nix** for declarative and reproducible package management (both user-specific and system-wide), managed conveniently via the custom [`nixman` wrapper](https://github.com/im-BowenGu/Nixman). This provides unparalleled flexibility and access to a vast software ecosystem.
 *   **Origin**: Based on the well-regarded "MyLinuxForWork" (ML4W) dotfiles, ensuring a thoughtfully designed and coherent system from the ground up.
 
 ## Project Structure
