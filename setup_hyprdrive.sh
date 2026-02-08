@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🚀 Starting Hyprdrive OS setup..."
+echo " Starting Hyprdrive OS setup..."
 
 # --- Function to detect microarchitecture support ---
 detect_microarch() {
@@ -16,7 +16,7 @@ detect_microarch() {
 }
 
 # --- Configure CachyOS Repositories ---
-echo "⚙️ Configuring CachyOS repositories based on microarchitecture..."
+echo " Configuring CachyOS repositories based on microarchitecture..."
 MICROARCH=$(detect_microarch)
 PACMAN_CONF="/etc/pacman.conf"
 TEMP_PACMAN_CONF="/tmp/pacman.conf.tmp"
@@ -68,11 +68,11 @@ Include = /etc/pacman.d/mirrorlist
 EOF
 
 sudo mv "$TEMP_PACMAN_CONF" "$PACMAN_CONF"
-echo "✅ CachyOS repositories configured. Updating pacman databases..."
+echo " CachyOS repositories configured. Updating pacman databases..."
 sudo pacman -Syy # Refresh databases after repo changes
 
 # --- 1. Install Native Arch Packages (including base-devel and CachyOS kernel) ---
-echo "📦 Installing native Arch packages, base-devel, and CachyOS kernel..."
+echo " Installing native Arch packages, base-devel, and CachyOS kernel..."
 
 # Ensure base-devel is installed first for makepkg
 sudo pacman -Syu --needed base-devel git
@@ -87,31 +87,31 @@ fi
 if [ -s pkg_list.txt ]; then
     sudo pacman -Syu --needed - < pkg_list.txt
     if [ $? -ne 0 ]; then
-        echo "⚠️  Failed to install some native Arch packages. Please check pkg_list.txt and your pacman configuration."
+        echo "  Failed to install some native Arch packages. Please check pkg_list.txt and your pacman configuration."
     else
-        echo "✅ Native Arch packages and CachyOS kernel installed."
+        echo " Native Arch packages and CachyOS kernel installed."
     fi
 else
-    echo "ℹ️  pkg_list.txt is empty or missing. Skipping native Arch package installation."
+    echo "  pkg_list.txt is empty or missing. Skipping native Arch package installation."
 fi
 
 # --- 2. Install RUA (AUR Helper) ---
-echo "🛠️ Installing RUA (AUR helper)..."
+echo " Installing RUA (AUR helper)..."
 if ! command -v rua &> /dev/null; then
     git clone https://aur.archlinux.org/rua.git /tmp/rua
     if [ $? -eq 0 ]; then
         (cd /tmp/rua && makepkg -si --noconfirm)
         if [ $? -ne 0 ]; then
-            echo "⚠️  Failed to install RUA. Please check the logs."
+            echo "  Failed to install RUA. Please check the logs."
         else
-            echo "✅ RUA installed."
+            echo " RUA installed."
         fi
         sudo rm -rf /tmp/rua
     else
-        echo "⚠️  Failed to clone RUA repository."
+        echo "  Failed to clone RUA repository."
     fi
 else
-    echo "✅ RUA is already installed."
+    echo " RUA is already installed."
 fi
 
 
@@ -120,33 +120,33 @@ if [ -s aur_list.txt ]; then
     echo "AUR helper (rua) found. Installing AUR packages from aur_list.txt..."
     rua install -Syu --needed - < aur_list.txt
     if [ $? -ne 0 ]; then
-        echo "⚠️  Failed to install some AUR packages. Please check aur_list.txt."
+        echo "  Failed to install some AUR packages. Please check aur_list.txt."
     else
-        echo "✅ AUR packages installed."
+        echo " AUR packages installed."
     fi
 else
-    echo "ℹ️  aur_list.txt is empty or missing. Skipping AUR package installation."
+    echo "  aur_list.txt is empty or missing. Skipping AUR package installation."
 fi
 
 # --- 4. Install Flatpak Applications ---
 if [ -s flatpak_list.txt ]; then
-    echo "🚀 Installing Flatpak applications from flatpak_list.txt..."
+    echo " Installing Flatpak applications from flatpak_list.txt..."
     while IFS= read -r app_id || [[ -n "$app_id" ]]; do
         if [[ -n "$app_id" && ! "$app_id" =~ ^# ]]; then
             echo "Installing Flatpak: $app_id"
             flatpak install -y flathub "$app_id"
             if [ $? -ne 0 ]; then
-                echo "⚠️  Failed to install Flatpak: $app_id"
+                echo "  Failed to install Flatpak: $app_id"
             fi
         fi
     done < flatpak_list.txt
-    echo "✅ Flatpak applications installation attempt completed."
+    echo " Flatpak applications installation attempt completed."
 else
-    echo "ℹ️  flatpak_list.txt is empty or missing. Skipping Flatpak application installation."
+    echo "  flatpak_list.txt is empty or missing. Skipping Flatpak application installation."
 fi
 
 # --- 5. Deploy Dotfiles ---
-echo "⚙️ Deploying dotfiles from the 'config/' directory..."
+echo " Deploying dotfiles from the 'config/' directory..."
 CONFIG_DIR="./config"
 
 if [ -d "$CONFIG_DIR" ]; then
@@ -160,9 +160,9 @@ if [ -d "$CONFIG_DIR" ]; then
             cp "$item" "$HOME/.config/"
         fi
     done
-    echo "✅ Dotfiles deployment completed."
+    echo " Dotfiles deployment completed."
 else
-    echo "⚠️  'config/' directory not found. Skipping dotfiles deployment."
+    echo "  'config/' directory not found. Skipping dotfiles deployment."
 fi
 
 echo "------------------------------------------"

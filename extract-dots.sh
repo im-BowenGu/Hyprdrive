@@ -4,7 +4,7 @@
 BACKUP_DIR="$HOME/Hyprdrive-Config"
 mkdir -p "$BACKUP_DIR/config"
 
-echo "🚀 Starting Hyprdrive OS configuration extraction..."
+echo " Starting Hyprdrive OS configuration extraction..."
 
 # 1. Copy common Hyprland & Wayland configs
 configs=( "hypr" "kitty" "waybar" "wofi" "mako" "swaylock" "neofetch" "fastfetch" )
@@ -12,7 +12,7 @@ configs=( "hypr" "kitty" "waybar" "wofi" "mako" "swaylock" "neofetch" "fastfetch
 for folder in "${configs[@]}"; do
     if [ -d "$HOME/.config/$folder" ]; then
         cp -r "$HOME/.config/$folder" "$BACKUP_DIR/config/"
-        echo "✅ Backed up $folder"
+        echo " Backed up $folder"
     fi
 done
 
