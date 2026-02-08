@@ -1,0 +1,21 @@
+/* -----------------------------------------------------
+ * Import Matugen Colors
+ * ----------------------------------------------------- */
+@import '../../../../../.config/waybar/colors.css';
+
+@define-color icon_color #FFFFFF;
+@define-color border_color @secondary;
+@define-color background transparent;
+@define-color on_surface #FFFFFF;
+
+@import '../style.css';
+
+
+#taskbar button {
+    padding: 0 5px;
+    border-bottom: 3px solid transparent;
+}
+
+#taskbar button.active {
+    border-bottom: 3px solid #ffffff;
+}

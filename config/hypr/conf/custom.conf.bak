@@ -1,0 +1,64 @@
+# Add your additional Hyprland configurations here
+# Add this to your custom.conf
+general {
+    border_size = 4
+#    col.active_border = rgba(d56ab1ee)
+#    col.active_border = rgba(00f2ffee)
+#    col.active_border = rgba(bc13feee)
+#    col.active_border = rgba(d08770ee)
+    col.active_border = rgba(bf00ffee) rgba(d56ab1ee) 45deg
+}
+#rgba(d56ab1ee) rgba(00f2ffee) 45deg
+
+# In your config (e.g., custom.conf)
+# No gaps if only one window is open (Smart Gaps)
+#workspace = w[tv1], gapsout:0, gapsin:0
+#workspace = f[1], gapsout:0, gapsin:0
+
+# Window rules to remove borders for that single window
+#windowrulev2 = bordersize 0, floating:0, onworkspace:w[tv1]
+#windowrulev2 = rounding 0, floating:0, onworkspace:w[tv1]
+animations {
+    enabled = yes
+    # Define a custom "Bouncy" curve
+    bezier = myBezier, 0.05, 0.9, 0.1, 1.1
+    
+    animation = windows, 1, 7, myBezier
+    animation = windowsOut, 1, 7, default, popin 80%
+    animation = border, 1, 10, default
+    animation = fade, 1, 7, default
+    animation = workspaces, 1, 6, default
+}
+# Toggle the special workspace (The Stash)
+bind = $mainMod, equal, togglespecialworkspace, magic
+
+# Move the active window INTO the stash
+bind = $mainMod SHIFT, equal, movetoworkspace, special:magic
+
+# Blur the background when the stash is open
+decoration {
+    dim_special = 0.3
+    blur {
+        special = true
+    }
+}
+
+# Drag windows with SUPER + Left Mouse Button
+# Resize windows with SUPER + Right Mouse Button
+bindm = SUPER, mouse:272, movewindow
+bindm = SUPER, mouse:273, resizewindow
+
+decoration {
+    # 4. Inactive Dimming (0.0 to 1.0)
+    # This darkens non-focused windows so the active one stands out
+    dim_inactive = true
+    dim_strength = 0.3
+}
+bind = SUPER SHIFT, P, exec, XDG_CURRENT_DESKTOP=sway flameshot gui
+
+# Add these to your hyprland.conf
+windowrulev2 = float, class:(flameshot)
+windowrulev2 = move 0 0, class:(flameshot)
+windowrulev2 = pin, class:(flameshot)
+windowrulev2 = fullscreenstate, class:(flameshot) # Use 'fakefullscreen' for older Hyprland versions
+windowrulev2 = float, class:(org.fcitx.fcitx5-config-qt)
